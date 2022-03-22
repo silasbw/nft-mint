@@ -15,4 +15,10 @@ export const nfts: NFT[] = [
     contractAddress: '0x50826Faa5b20250250E09067e8dDb1AFa2bdf910',
     mintFee: toWei('2', 'ether'),
   },
+  {
+    name: 'Celo Doodles',
+    abi: require('./celo-doodles-abi.json'),
+    contractAddress: '0xDAd48E7974878949f1672c92014Cc0615c79746f',
+    mintFee: toWei('0', 'ether'),
+  },
 ]

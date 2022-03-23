@@ -21,4 +21,10 @@ export const nfts: NFT[] = [
     contractAddress: '0xDAd48E7974878949f1672c92014Cc0615c79746f',
     mintFee: toWei('0', 'ether'),
   },
+  {
+    name: 'Celostrials',
+    abi: require('./celostrials-abi.json'),
+    contractAddress: '0xAc80c3c8b122DB4DcC3C351ca93aC7E0927C605d',
+    mintFee: toWei('3', 'ether'),
+  },
 ]

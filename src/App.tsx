@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useContractKit } from '@celo-tools/use-contractkit'
 import { logEvent } from 'firebase/analytics'
+import { Contract } from 'web3-eth-contract'
 
 import { nfts, NFT } from './nfts'
 import { analytics } from './firebase'
@@ -30,7 +31,7 @@ function App() {
             nft.abi,
             nft.contractAddress,
           )
-          const txObject = await contract.methods.mint(1)
+          const txObject = await nft.makeMintTransaction(contract, address)
           const tx = await kit.sendTransactionObject(txObject, {
             from: address,
             value: nft.mintFee,

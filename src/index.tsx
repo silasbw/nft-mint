@@ -4,25 +4,11 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-import '@celo-tools/use-contractkit/lib/styles.css'
-import { Mainnet, ContractKitProvider } from '@celo-tools/use-contractkit'
-
 import './firebase'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ContractKitProvider
-      dapp={{
-        name: 'nft minter',
-        description: 'nft minter',
-        url: '',
-        icon: '',
-      }}
-      network={Mainnet}
-      networks={[Mainnet]}
-    >
-      <App />
-    </ContractKitProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 )

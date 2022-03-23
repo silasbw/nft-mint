@@ -4,6 +4,9 @@ import { useContractKit } from '@celo-tools/use-contractkit'
 import { logEvent } from 'firebase/analytics'
 import { Contract } from 'web3-eth-contract'
 
+import '@celo-tools/use-contractkit/lib/styles.css'
+import { Mainnet, ContractKitProvider } from '@celo-tools/use-contractkit'
+
 import { nfts, NFT } from './nfts'
 import { analytics } from './firebase'
 
@@ -65,4 +68,21 @@ function App() {
   )
 }
 
-export default App
+function WrappedApp() {
+  return (
+    <ContractKitProvider
+      dapp={{
+        name: 'nft minter',
+        description: 'nft minter',
+        url: '',
+        icon: '',
+      }}
+      network={Mainnet}
+      networks={[Mainnet]}
+    >
+      <App />
+    </ContractKitProvider>
+  )
+}
+
+export default WrappedApp

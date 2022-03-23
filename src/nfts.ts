@@ -9,10 +9,16 @@ export interface NFT {
   abi: AbiItem
   contractAddress: Address
   mintFee: string
-  makeMintTransaction(contract: Contract, address: Address): Promise<CeloTxObject<any>>
+  makeMintTransaction(
+    contract: Contract,
+    address: Address,
+  ): Promise<CeloTxObject<any>>
 }
 
-function defaultMakeMintTransaction(contract: Contract, address: Address): Promise<CeloTxObject<any>> {
+function defaultMakeMintTransaction(
+  contract: Contract,
+  address: Address,
+): Promise<CeloTxObject<any>> {
   return contract.methods.mint(1)
 }
 
@@ -36,8 +42,11 @@ export const nfts: NFT[] = [
     abi: require('./celostrials-abi.json'),
     contractAddress: '0xAc80c3c8b122DB4DcC3C351ca93aC7E0927C605d',
     mintFee: toWei('3', 'ether'),
-    makeMintTransaction: (contract: Contract, address: Address): Promise<CeloTxObject<any>> => {
+    makeMintTransaction: (
+      contract: Contract,
+      address: Address,
+    ): Promise<CeloTxObject<any>> => {
       return contract.methods.mint(address, 1)
-    }
+    },
   },
 ]

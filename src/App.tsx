@@ -9,6 +9,7 @@ import { Mainnet, ContractKitProvider } from '@celo-tools/use-contractkit'
 
 import { nfts, NFT } from './nfts'
 import { analytics } from './firebase'
+import Header from './Header/Header'
 
 function App() {
   const { connect, address, initialised, performActions } = useContractKit()
@@ -60,9 +61,7 @@ function App() {
   })
 
   return (
-    <div>
-      <div>Connected to {address}</div>
-      <button onClick={connect}>Connect wallet</button>
+    <div style={{ paddingTop: 40 }}>
       <ul>{mints}</ul>
     </div>
   )
@@ -80,6 +79,7 @@ function WrappedApp() {
       network={Mainnet}
       networks={[Mainnet]}
     >
+      <Header />
       <App />
     </ContractKitProvider>
   )

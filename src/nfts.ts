@@ -4,7 +4,7 @@ import { Address } from '@celo/base/lib/address'
 import { AbiItem, toWei } from 'web3-utils'
 import { Contract } from 'web3-eth-contract'
 
-export interface NFT {
+export interface NFTContract {
   name: string
   abi: AbiItem
   contractAddress: Address
@@ -13,13 +13,13 @@ export interface NFT {
     contract: Contract,
     address: Address,
   ): Promise<CeloTxObject<any>>
-  fetchMetadata(contract: Contract, address: Address): Promise<NFTMetadata>
+  fetchMetadata(contract: Contract, address: Address): Promise<NFTContractMetadata>
 }
 
-export interface NFTMetadata {
+export interface NFTContractMetadata {
   contractAddress: Address
-  name: string
-  owner: Address
+  name?: string
+  owner?: Address
   maxSupply?: string
   totalSupply?: string
 }
@@ -34,11 +34,10 @@ function defaultMakeMintTransaction(
 async function defaultFetchMetadata(
   contract: Contract,
   address: Address,
-): Promise<NFTMetadata> {
-  const metadata = {} as any
+): Promise<NFTContractMetadata> {
+  const metadata : NFTContractMetadata = {contractAddress: address}
 
   metadata.contractAddress = address
-
   if (contract.methods.maxSupply) {
     metadata.maxSupply = await contract.methods.maxSupply().call()
   }
@@ -51,11 +50,10 @@ async function defaultFetchMetadata(
   if (contract.methods.owner) {
     metadata.owner = await contract.methods.owner().call()
   }
-
   return metadata
 }
 
-export const nfts: NFT[] = [
+export const nfts: NFTContract[] = [
   {
     name: 'Womxn of Celo',
     abi: require('./abis/womxn-of-celo.json'),

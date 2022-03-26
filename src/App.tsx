@@ -8,13 +8,13 @@ import {
 } from '@celo-tools/use-contractkit'
 import '@celo-tools/use-contractkit/lib/styles.css'
 
-import { nfts, NFT, NFTMetadata } from './nfts'
+import { nfts, NFTContract, NFTContractMetadata } from './nfts'
 import { analytics } from './firebase'
 
-function NFTMintItem({ nft }: { nft: NFT }) {
+function NFTMintItem({ nft }: { nft: NFTContract }) {
   const { address, getConnectedKit, initialised, performActions } =
     useContractKit()
-  const [nftMetadata, setNFTMetadata] = useState<NFTMetadata | null>(null)
+  const [nftContractMetadata, setNFTContractMetadata] = useState<NFTContractMetadata | null>(null)
 
   const mint = async () => {
     logEvent(analytics, 'mint_pressed', { name: nft.name })
@@ -60,19 +60,19 @@ function NFTMintItem({ nft }: { nft: NFT }) {
         nft.contractAddress,
       )
       const metadata = await nft.fetchMetadata(contract, nft.contractAddress)
-      setNFTMetadata(metadata)
+      setNFTContractMetadata(metadata)
     }
     fetch().catch(console.error)
   }, [])
 
-  const showCount = nftMetadata?.maxSupply && nftMetadata?.totalSupply
+  const showCount = nftContractMetadata?.maxSupply && nftContractMetadata?.totalSupply
 
   return (
     <div>
       {nft.name}{' '}
       {showCount ? (
         <>
-          {nftMetadata?.totalSupply} / {nftMetadata?.maxSupply}
+          {nftContractMetadata.totalSupply} / {nftContractMetadata.maxSupply}
         </>
       ) : null}{' '}
       <button onClick={mint}>Mint</button>
@@ -82,10 +82,6 @@ function NFTMintItem({ nft }: { nft: NFT }) {
 
 function App() {
   const { connect, address } = useContractKit()
-
-  const [nftMetadata, setNFTMetadata] = useState<Record<string, NFTMetadata>>(
-    {},
-  )
 
   return (
     <div>

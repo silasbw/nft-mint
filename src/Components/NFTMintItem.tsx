@@ -6,11 +6,11 @@ import { analytics } from '../firebase'
 import { NFTContract, NFTContractMetadata, nfts } from '../nfts'
 import { mintFeeDisplay } from '../utils/utils'
 
-
 function NFTMintItem({ nft }: { nft: NFTContract }) {
   const { address, getConnectedKit, initialised, performActions } =
     useContractKit()
-  const [nftContractMetadata, setNFTContractMetadata] = useState<NFTContractMetadata | null>(null)
+  const [nftContractMetadata, setNFTContractMetadata] =
+    useState<NFTContractMetadata | null>(null)
 
   const mint = async () => {
     logEvent(analytics, 'mint_pressed', { name: nft.name })
@@ -63,16 +63,23 @@ function NFTMintItem({ nft }: { nft: NFTContract }) {
     console.log('NFT: ', nfts)
   }, [])
 
-  const showCount = nftContractMetadata?.maxSupply && nftContractMetadata?.totalSupply
+  const showCount =
+    nftContractMetadata?.maxSupply && nftContractMetadata?.totalSupply
 
   return (
-    <Card sx={{minHeight: 142}}>
-      <CardHeader 
+    <Card sx={{ minHeight: 142 }}>
+      <CardHeader
         title={nft.name}
-        subheader={showCount ? `${nftContractMetadata.totalSupply} of ${nftContractMetadata.maxSupply} minted`: `unknown amount minted`}
+        subheader={
+          showCount
+            ? `${nftContractMetadata.totalSupply} of ${nftContractMetadata.maxSupply} minted`
+            : `unknown amount minted`
+        }
       />
       <CardActions className="card-actions">
-        <Button onClick={mint} variant="contained">Mint for {mintFeeDisplay(nft.mintFee)} CELO</Button>
+        <Button onClick={mint} variant="contained">
+          Mint for {mintFeeDisplay(nft.mintFee)} CELO
+        </Button>
       </CardActions>
     </Card>
   )

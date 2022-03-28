@@ -13,7 +13,10 @@ export interface NFTContract {
     contract: Contract,
     address: Address,
   ): Promise<CeloTxObject<any>>
-  fetchMetadata(contract: Contract, address: Address): Promise<NFTContractMetadata>
+  fetchMetadata(
+    contract: Contract,
+    address: Address,
+  ): Promise<NFTContractMetadata>
 }
 
 export interface NFTContractMetadata {
@@ -35,7 +38,7 @@ async function defaultFetchMetadata(
   contract: Contract,
   address: Address,
 ): Promise<NFTContractMetadata> {
-  const metadata : NFTContractMetadata = {contractAddress: address}
+  const metadata: NFTContractMetadata = { contractAddress: address }
 
   metadata.contractAddress = address
   if (contract.methods.maxSupply) {

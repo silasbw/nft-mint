@@ -1,6 +1,4 @@
-import {
-  ContractKitProvider, Mainnet
-} from '@celo-tools/use-contractkit'
+import { ContractKitProvider, Mainnet } from '@celo-tools/use-contractkit'
 import '@celo-tools/use-contractkit/lib/styles.css'
 import { Grid } from '@mui/material'
 import './App.css'
@@ -11,7 +9,12 @@ import { nfts } from './nfts'
 function App() {
   // We Might want to move this to a new component
   return (
-    <Grid className="gridContainer" container spacing={4} style={{ paddingTop: 62}}>
+    <Grid
+      className="gridContainer"
+      container
+      spacing={4}
+      style={{ paddingTop: 62 }}
+    >
       {nfts.map((nft) => (
         <Grid xs={12} sm={12} md={6} lg={4} item>
           <NFTMintItem key={nft.contractAddress} nft={nft} />

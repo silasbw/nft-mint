@@ -1,20 +1,18 @@
 import { useContractKit } from '@celo-tools/use-contractkit'
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
 import CloseIcon from '@mui/icons-material/Close'
+import GitHub from '@mui/icons-material/GitHub'
 import MenuIcon from '@mui/icons-material/Menu'
-import MoneyIcon from '@mui/icons-material/Money'
 import {
   AppBar,
   Box,
   Container,
   Drawer,
-  IconButton,
-  ListItem,
+  IconButton, List, ListItem,
   ListItemIcon,
   ListItemText,
   Toolbar,
-  Typography,
-  List,
+  Typography
 } from '@mui/material'
 import { useState } from 'react'
 
@@ -89,14 +87,20 @@ const Header = () => {
         <Toolbar />
         <Box>
           <Typography align="center" variant="h3">
-            NFT-Mint
+            NFT Mint
           </Typography>
           <List>
-            <ListItem button>
+            <ListItem 
+              button 
+              component="a" 
+              rel="noopener noreferrer" 
+              target="_blank" 
+              href="https://github.com/silasbw/nft-mint"
+            >
               <ListItemIcon>
-                <MoneyIcon />
+                <GitHub />
               </ListItemIcon>
-              <ListItemText>Test List Item</ListItemText>
+              <ListItemText>GitHub</ListItemText>
             </ListItem>
           </List>
         </Box>

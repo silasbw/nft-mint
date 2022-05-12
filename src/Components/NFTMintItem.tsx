@@ -71,9 +71,7 @@ function NFTMintItem({ nft }: { nft: NFTContract }) {
       <CardHeader
         title={nft.name}
         subheader={
-          showCount
-            ? `${nftContractMetadata.totalSupply} of ${nftContractMetadata.maxSupply} minted`
-            : `unknown amount minted`
+          showCount && `${nftContractMetadata.totalSupply} of ${nftContractMetadata.maxSupply} minted`
         }
       />
       <CardActions className="card-actions">

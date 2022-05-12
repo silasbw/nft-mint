@@ -60,7 +60,6 @@ function NFTMintItem({ nft }: { nft: NFTContract }) {
       setNFTContractMetadata(metadata)
     }
     fetch().catch(console.error)
-    console.log('NFT: ', nfts)
   }, [])
 
   const showCount =

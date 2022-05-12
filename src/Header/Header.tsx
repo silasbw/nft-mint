@@ -56,6 +56,7 @@ const Header = () => {
             aria-label="menu for nft mint"
             aria-controls="menu-appbar"
             aria-haspopup="menu"
+            data-testid="hamburger-menu"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
@@ -64,6 +65,7 @@ const Header = () => {
             size="large"
             aria-label="connect wallet"
             aria-controls="connect-wallet-appbar"
+            data-testid="connect-wallet"
             onClick={handleWalletConnect}
             disabled={menuOpen}
           >
@@ -96,6 +98,7 @@ const Header = () => {
               rel="noopener noreferrer" 
               target="_blank" 
               href="https://github.com/silasbw/nft-mint"
+              data-testid="github-link"
             >
               <ListItemIcon>
                 <GitHub />

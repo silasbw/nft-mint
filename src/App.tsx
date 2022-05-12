@@ -15,8 +15,8 @@ function App() {
       spacing={4}
       style={{ paddingTop: 62 }}
     >
-      {nfts.map((nft) => (
-        <Grid xs={12} sm={12} md={6} lg={4} item>
+      {nfts.map((nft, idx) => (
+        <Grid key={idx} xs={12} sm={12} md={6} lg={4} item>
           <NFTMintItem key={nft.contractAddress} nft={nft} />
         </Grid>
       ))}
